@@ -6,6 +6,8 @@ A Flutter package for showing platform dialogs without using new routes.
   - Supports Material and Cupertino dialogs
   - Flutter-based solution, no additional imports needed
 
+![Overlay Dialog Demo](https://github.com/mera-company/flutter-overlay-dialog/blob/master/doc/overlay_dialog_demo.gif?raw=true =300x533)
+
 # What's the problem?
 
 During project develop we stucks with several problems with Flutter dialogs. This package solves several problems of standart Flutter approach.

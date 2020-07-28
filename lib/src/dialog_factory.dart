@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'entity/dialog_action.dart';
 import 'entity/dialog_style.dart';
 
+// Platform dialog factory
 class DialogFactory {
   factory DialogFactory(DialogStyle type) {
     if (type == DialogStyle.material) {

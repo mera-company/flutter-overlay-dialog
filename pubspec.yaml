@@ -1,7 +1,7 @@
 name: overlay_dialog
 description: A Flutter package for showing platform dialogs without using new routes.
 version: 0.0.2
-homepage: https://ctogitlab.mera.com/anartem/flutter-overlay-dialog
+homepage: https://github.com/mera-company/flutter-overlay-dialog
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

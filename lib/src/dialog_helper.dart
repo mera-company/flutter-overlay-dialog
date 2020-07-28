@@ -22,6 +22,7 @@ class DialogHelper {
   Function _currentCallback;
   StreamController<double> _currentController;
 
+  // Shows the dialog
   void show(BuildContext context, DialogWidget dialog, {bool rootOverlay = true}) {
     hideImmediate(context);
 
@@ -63,6 +64,7 @@ class DialogHelper {
     _currentController.add(1.0);
   }
 
+  // Hide opened dialog with animation
   void hide(BuildContext context) {
     if (_currentCallback != null) {
       ModalRoute.of(context)?.removeScopedWillPopCallback(_currentCallback);
@@ -84,6 +86,7 @@ class DialogHelper {
     }
   }
 
+  // Hide opened dialog without animation, clear closable callback if any
   void hideImmediate(BuildContext context) {
     //reset back press handler
     if (_currentCallback != null) {

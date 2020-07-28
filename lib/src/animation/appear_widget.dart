@@ -4,11 +4,15 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
+// Supported animation type
+// opacity creates fade in / out effect
+// blur makes background blurred
 enum AppearStyle {
   opacity,
   blur
 }
 
+// Uses to animate dialog appearance
 class AppearWidget extends StatefulWidget {
   final Widget _child;
   final Stream _progress;
