@@ -41,7 +41,7 @@ class DialogHelper {
     _currentController = StreamController();
 
     _currentOverlay = OverlayEntry(
-      builder: (context) => AppearWidget(
+      builder: (_) => AppearWidget(
         child: Stack(
           children: <Widget>[
             GestureDetector(
@@ -55,7 +55,7 @@ class DialogHelper {
         ),
         progress: _currentController.stream,
         duration: DEFAULT_DURATION,
-        style: AppearStyle.blur,
+        style: AppearStyle.opacity,
       ),
     );
 
@@ -80,7 +80,7 @@ class DialogHelper {
           _currentOverlay?.remove();
           _currentOverlay = null;
         })
-        .catchError((_){});
+        .catchError((error){});
     }
   }
 
