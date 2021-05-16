@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:overlay_dialog/overlay_dialog.dart';
 
 class MaterialPage extends StatelessWidget {
-  final Function handler;
+  final void Function() handler;
 
   MaterialPage(this.handler);
 
@@ -53,48 +52,41 @@ class MaterialPage extends StatelessWidget {
   }
 
   void _showProgress(BuildContext context) {
-    DialogHelper().show(
-      context,
-      DialogWidget.progress(style: DialogStyle.material)
-    );
+    DialogHelper().show(context, DialogWidget.progress(style: DialogStyle.material));
 
-    Future
-      .delayed(Duration(seconds: 3))
-      .then((_) => DialogHelper().hide(context));
+    Future.delayed(Duration(seconds: 3)).then((_) => DialogHelper().hide(context));
   }
 
   void _showAlert(BuildContext context) {
     DialogHelper().show(
-      context,
-      DialogWidget.alert(
-        style: DialogStyle.material,
-        title: "Alert Dialog Example",
-        content: "This is an example of overlay dialog with three buttons. Do you like it?",
-        actions: [
-          DialogAction(
-            title: "Later",
-            handler: () => DialogHelper().hide(context),
-          ),
-          DialogAction(
-            title: "No",
-            handler: () => DialogHelper().hide(context),
-          ),
-          DialogAction(
-            title: "Yes",
-            handler: () => DialogHelper().hide(context),
-          ),
-        ],
-      )
-    );
+        context,
+        DialogWidget.alert(
+          style: DialogStyle.material,
+          title: "Alert Dialog Example",
+          content: "This is an example of overlay dialog with three buttons. Do you like it?",
+          actions: [
+            DialogAction(
+              title: "Later",
+              handler: () => DialogHelper().hide(context),
+            ),
+            DialogAction(
+              title: "No",
+              handler: () => DialogHelper().hide(context),
+            ),
+            DialogAction(
+              title: "Yes",
+              handler: () => DialogHelper().hide(context),
+            ),
+          ],
+        ));
   }
 
   void _showCustom(BuildContext context) {
     DialogHelper().show(
-      context,
-      DialogWidget.custom(
-        child: CustomDialogWidget(),
-      )
-    );
+        context,
+        DialogWidget.custom(
+          child: CustomDialogWidget(),
+        ));
   }
 }
 
@@ -110,18 +102,13 @@ class CustomDialogWidget extends StatelessWidget {
           width: 200,
           height: 150,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.blue, width: 2),
-            borderRadius: BorderRadius.circular(8.0),
-            color: Colors.white
-          ),
+              border: Border.all(color: Colors.blue, width: 2),
+              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white),
           child: Text(
             "This is an example of custom overlay dialog. Do you like it?",
             style: TextStyle(
-              fontSize: 14,
-              fontStyle: FontStyle.normal,
-              color: Colors.blue,
-              decoration: TextDecoration.none
-            ),
+                fontSize: 14, fontStyle: FontStyle.normal, color: Colors.blue, decoration: TextDecoration.none),
           ),
         ),
         Row(
@@ -134,10 +121,9 @@ class CustomDialogWidget extends StatelessWidget {
                 height: 40,
                 margin: EdgeInsets.only(right: 40),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.red, width: 2),
-                  borderRadius: BorderRadius.circular(60),
-                  color: Colors.white
-                ),
+                    border: Border.all(color: Colors.red, width: 2),
+                    borderRadius: BorderRadius.circular(60),
+                    color: Colors.white),
                 child: Icon(
                   Icons.clear,
                   color: Colors.red,
@@ -150,10 +136,9 @@ class CustomDialogWidget extends StatelessWidget {
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(60),
-                  color: Colors.white
-                ),
+                    border: Border.all(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(60),
+                    color: Colors.white),
                 child: Icon(
                   Icons.check,
                   color: Colors.blue,
