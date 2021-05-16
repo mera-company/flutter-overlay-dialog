@@ -7,10 +7,7 @@ import 'package:flutter/widgets.dart';
 // Supported animation type
 // opacity creates fade in / out effect
 // blur makes background blurred
-enum AppearStyle {
-  opacity,
-  blur
-}
+enum AppearStyle { opacity, blur }
 
 // Uses to animate dialog appearance
 class AppearWidget extends StatefulWidget {
@@ -19,20 +16,19 @@ class AppearWidget extends StatefulWidget {
   final Duration _duration;
   final AppearStyle _style;
 
-  AppearWidget({@required Widget child, @required progress, @required Duration duration, AppearStyle style}):
-      _child = child,
-      _progress = progress,
-      _duration = duration,
-      _style = style ?? AppearStyle.opacity;
+  AppearWidget({required Widget child, required progress, required Duration duration, AppearStyle? style})
+      : _child = child,
+        _progress = progress,
+        _duration = duration,
+        _style = style ?? AppearStyle.opacity;
 
   @override
   _AppearWidgetState createState() => _AppearWidgetState();
 }
 
 class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderStateMixin {
-
-  AnimationController _controller;
-  StreamSubscription _subscription;
+  late AnimationController _controller;
+  late StreamSubscription _subscription;
 
   @override
   void initState() {
@@ -60,7 +56,7 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
     return AnimatedBuilder(
       animation: _controller,
       child: widget._child,
-      builder: (BuildContext context, Widget child) => _getWidget(child, _controller.value)
+      builder: (context, child) => _getWidget(child!, _controller.value),
     );
   }
 
@@ -78,10 +74,7 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
           fit: StackFit.expand,
           children: <Widget>[
             BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: progress * 2,
-                sigmaY: progress * 2
-              ),
+              filter: ImageFilter.blur(sigmaX: progress * 2, sigmaY: progress * 2),
               child: Container(
                 color: Color(0x00000000),
               ),

@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:overlay_dialog/overlay_dialog.dart';
 
-
 class CupertinoPage extends StatelessWidget {
-  final Function handler;
+  final void Function() handler;
 
   CupertinoPage(this.handler);
 
@@ -55,50 +53,35 @@ class CupertinoPage extends StatelessWidget {
   }
 
   void _showProgress(BuildContext context) {
-    DialogHelper().show(
-      context,
-      DialogWidget.progress(style: DialogStyle.cupertino)
-    );
+    DialogHelper().show(context, DialogWidget.progress(style: DialogStyle.cupertino));
 
-    Future
-      .delayed(Duration(seconds: 3))
-      .then((_) => DialogHelper().hide(context));
+    Future.delayed(Duration(seconds: 3)).then((_) => DialogHelper().hide(context));
   }
 
   void _showDialog(BuildContext context) {
     DialogHelper().show(
-      context,
-      DialogWidget.alert(
-        style: DialogStyle.cupertino,
-        title: "Alert Dialog Example",
-        content: "This is an example of overlay dialog with three buttons. Do you like it?",
-        actions: [
-          DialogAction(
-            title: "Later",
-            handler: () => DialogHelper().hide(context),
-          ),
-          DialogAction(
-            title: "No",
-            handler: () => DialogHelper().hide(context),
-            isDestructive: true
-          ),
-          DialogAction(
-            title: "Yes",
-            handler: () => DialogHelper().hide(context),
-            isDefault: true
-          ),
-        ],
-      )
-    );
+        context,
+        DialogWidget.alert(
+          style: DialogStyle.cupertino,
+          title: "Alert Dialog Example",
+          content: "This is an example of overlay dialog with three buttons. Do you like it?",
+          actions: [
+            DialogAction(
+              title: "Later",
+              handler: () => DialogHelper().hide(context),
+            ),
+            DialogAction(title: "No", handler: () => DialogHelper().hide(context), isDestructive: true),
+            DialogAction(title: "Yes", handler: () => DialogHelper().hide(context), isDefault: true),
+          ],
+        ));
   }
 
   void _showCustom(BuildContext context) {
     DialogHelper().show(
-      context,
-      DialogWidget.custom(
-        child: CustomDialogWidget(),
-      )
-    );
+        context,
+        DialogWidget.custom(
+          child: CustomDialogWidget(),
+        ));
   }
 }
 
@@ -114,18 +97,16 @@ class CustomDialogWidget extends StatelessWidget {
           width: 200,
           height: 150,
           decoration: BoxDecoration(
-            border: Border.all(color: CupertinoColors.activeBlue),
-            borderRadius: BorderRadius.circular(8.0),
-            color: CupertinoColors.white
-          ),
+              border: Border.all(color: CupertinoColors.activeBlue),
+              borderRadius: BorderRadius.circular(8.0),
+              color: CupertinoColors.white),
           child: Text(
             "This is an example of custom overlay dialog. Do you like it?",
             style: TextStyle(
-              fontSize: 16,
-              fontStyle: FontStyle.normal,
-              color: CupertinoColors.activeBlue,
-              decoration: TextDecoration.none
-            ),
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                color: CupertinoColors.activeBlue,
+                decoration: TextDecoration.none),
           ),
         ),
         Row(
@@ -138,10 +119,9 @@ class CustomDialogWidget extends StatelessWidget {
                 height: 40,
                 margin: EdgeInsets.only(right: 40),
                 decoration: BoxDecoration(
-                  border: Border.all(color: CupertinoColors.systemRed),
-                  borderRadius: BorderRadius.circular(60),
-                  color: CupertinoColors.white
-                ),
+                    border: Border.all(color: CupertinoColors.systemRed),
+                    borderRadius: BorderRadius.circular(60),
+                    color: CupertinoColors.white),
                 child: Icon(
                   CupertinoIcons.clear,
                   color: CupertinoColors.systemRed,
@@ -154,10 +134,9 @@ class CustomDialogWidget extends StatelessWidget {
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(
-                  border: Border.all(color: CupertinoColors.activeBlue),
-                  borderRadius: BorderRadius.circular(60),
-                  color: CupertinoColors.white
-                ),
+                    border: Border.all(color: CupertinoColors.activeBlue),
+                    borderRadius: BorderRadius.circular(60),
+                    color: CupertinoColors.white),
                 child: Icon(
                   CupertinoIcons.check_mark,
                   color: CupertinoColors.activeBlue,

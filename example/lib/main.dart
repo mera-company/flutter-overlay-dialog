@@ -1,7 +1,9 @@
-import 'package:example/cupertino_page.dart';
-import 'package:example/material_page.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart' show CupertinoApp, CupertinoThemeData;
+import 'package:flutter/material.dart' show MaterialApp, ThemeData, Brightness;
+import 'package:flutter/widgets.dart';
+
+import 'cupertino_page.dart';
+import 'material_page.dart';
 
 void main() {
   runApp(App());
@@ -19,17 +21,16 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return isMaterial
-      ? _getMaterialApp()
-      : _getCupertionApp();
+    return isMaterial ? _getMaterialApp() : _getCupertionApp();
   }
 
   Widget _getMaterialApp() {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-        /// Material dialog theme customization
-        /*accentColor: Colors.red,
+        theme: ThemeData(
+          brightness: Brightness.light,
+
+          /// Material dialog theme customization
+          /*accentColor: Colors.red,
         buttonTheme: ButtonThemeData(
           textTheme: ButtonTextTheme.accent,
         ),
@@ -42,18 +43,16 @@ class AppState extends State<App> {
           titleTextStyle: TextStyle(color: Colors.green),
           contentTextStyle: TextStyle(color: Colors.purple),
         )*/
-      ),
-      home: MaterialPage(togglePlatform)
-    );
+        ),
+        home: MaterialPage(togglePlatform));
   }
 
   Widget _getCupertionApp() {
     return CupertinoApp(
-      theme: CupertinoThemeData(
-        brightness: Brightness.light,
-      ),
-      home: CupertinoPage(togglePlatform)
-    );
+        theme: CupertinoThemeData(
+          brightness: Brightness.light,
+        ),
+        home: CupertinoPage(togglePlatform));
   }
 
   void togglePlatform() {
