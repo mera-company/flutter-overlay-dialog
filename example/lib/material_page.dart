@@ -13,8 +13,11 @@ class MaterialExamplePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Material App"),
         actions: <Widget>[
-          FlatButton(
-            child: Text("Cupertino"),
+          TextButton(
+            child: Text(
+              "Cupertino",
+              style: TextStyle(color: Colors.white)
+            ),
             onPressed: handler,
           )
         ],

@@ -1,3 +1,5 @@
+## [0.2.0] - Migrate to null-safety
+
 ## [0.1.0] - Add dialog id
 * Added id to dialog to open several dialogs at once
 * Added default dialog style to DialogHelper

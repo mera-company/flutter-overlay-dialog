@@ -8,7 +8,7 @@ import 'entity/dialog_action.dart';
 import 'entity/dialog_style.dart';
 
 // Platform dialog factory
-class DialogFactory {
+abstract class DialogFactory {
   factory DialogFactory(DialogStyle type) {
     if (type == DialogStyle.material) {
       return _MaterialDialogFactory();
@@ -25,11 +25,11 @@ class DialogFactory {
     }
   }
 
-  Widget alert(String title, String content, List<DialogAction> actions) => null;
+  Widget alert(String title, String content, List<DialogAction> actions);
 
-  Widget progress() => null;
+  Widget progress();
 
-  Widget custom(Widget child) => null;
+  Widget custom(Widget child);
 }
 
 class _MaterialDialogFactory implements DialogFactory {
@@ -39,7 +39,7 @@ class _MaterialDialogFactory implements DialogFactory {
       title: Text(title),
       content: Text(content),
       actions: actions.map(
-          (action) => FlatButton(
+          (action) => TextButton(
             onPressed: action.handler,
             child: Text(action.title.toUpperCase())
           )

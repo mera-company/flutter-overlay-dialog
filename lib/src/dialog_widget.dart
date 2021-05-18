@@ -13,23 +13,23 @@ class DialogWidget extends StatelessWidget {
   final Widget _widget;
 
   DialogWidget.alert({
-    DialogStyle style,
-    String title,
-    String content,
-    List<DialogAction> actions,
+    DialogStyle? style,
+    required String title,
+    required String content,
+    required List<DialogAction> actions,
     this.closable = true,
   }): _widget = DialogFactory(style ?? DialogHelper.defaultStyle).alert(title, content, actions);
 
   /*DialogWidget.input();*/
 
   DialogWidget.progress({
-    DialogStyle style,
+    DialogStyle? style,
     this.closable = false
   }): _widget = DialogFactory(style ?? DialogHelper.defaultStyle).progress();
 
   DialogWidget.custom({
-    DialogStyle style,
-    @required Widget child,
+    DialogStyle? style,
+    required Widget child,
     this.closable = true
   }): _widget = DialogFactory(style ?? DialogHelper.defaultStyle).custom(child);
 

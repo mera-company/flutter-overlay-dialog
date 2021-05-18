@@ -19,11 +19,11 @@ class AppearWidget extends StatefulWidget {
   final Duration _duration;
   final AppearStyle _style;
 
-  AppearWidget({@required Widget child, @required progress, @required Duration duration, AppearStyle style}):
+  AppearWidget({required Widget child, required progress, required Duration duration, AppearStyle style = AppearStyle.opacity}):
       _child = child,
       _progress = progress,
       _duration = duration,
-      _style = style ?? AppearStyle.opacity;
+      _style = style;
 
   @override
   _AppearWidgetState createState() => _AppearWidgetState();
@@ -31,8 +31,8 @@ class AppearWidget extends StatefulWidget {
 
 class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderStateMixin {
 
-  AnimationController _controller;
-  StreamSubscription _subscription;
+  late AnimationController _controller;
+  late StreamSubscription _subscription;
 
   @override
   void initState() {
@@ -60,11 +60,11 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
     return AnimatedBuilder(
       animation: _controller,
       child: widget._child,
-      builder: (BuildContext context, Widget child) => _getWidget(child, _controller.value)
+      builder: (_, child) => _getWidget(child, _controller.value)
     );
   }
 
-  Widget _getWidget(Widget child, double progress) {
+  Widget _getWidget(Widget? child, double progress) {
     switch (widget._style) {
       case AppearStyle.opacity:
         return Opacity(

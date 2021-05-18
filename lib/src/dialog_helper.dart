@@ -26,14 +26,14 @@ class DialogHelper {
   List<IndexedData<StreamController<double>>> _currentController = [];
 
   Future<bool> onWillPop() {
-    return _currentCallback?.last?.data?.call() ?? Future.value(true);
+    return _currentCallback.length == 0 ? Future.value(true) : _currentCallback.last.data.call();
   }
 
   // Shows the dialog
-  void show(BuildContext context, DialogWidget dialog, {bool rootOverlay = true, int id, bool hidePrevious = true}) {
+  void show(BuildContext context, DialogWidget dialog, {bool rootOverlay = true, int? id, bool hidePrevious = true}) {
     if (hidePrevious || id == null) hideImmediate(context);
 
-    OverlayState overlayState = rootOverlay
+    OverlayState? overlayState = rootOverlay
       ? context.findRootAncestorStateOfType<OverlayState>()
       : context.findAncestorStateOfType<OverlayState>();
 
@@ -57,7 +57,6 @@ class DialogHelper {
     }
 
     if (_currentCallback.length == 1) {
-      print("add callback");
       ModalRoute.of(context)?.addScopedWillPopCallback(onWillPop);
     }
 
@@ -96,12 +95,12 @@ class DialogHelper {
       )
     );
 
-    overlayState.insert(overlayEntry);
+    overlayState?.insert(overlayEntry);
     controller.add(1.0);
   }
 
   // Hide opened dialog with animation
-  void hide(BuildContext context, {int id}) {
+  void hide(BuildContext context, {int? id}) {
     if (_currentCallback.length == 1 || id == null) {
       ModalRoute.of(context)?.removeScopedWillPopCallback(onWillPop);
     }
@@ -117,7 +116,7 @@ class DialogHelper {
   }
 
   // Hide opened dialog without animation, clear closable callback if any
-  void hideImmediate(BuildContext context, {int id}) {
+  void hideImmediate(BuildContext context, {int? id}) {
     //reset back press handler
     if (_currentCallback.length == 1 || id == null) {
       ModalRoute.of(context)?.removeScopedWillPopCallback(onWillPop);
@@ -126,7 +125,7 @@ class DialogHelper {
     _hide(id);
   }
 
-  void _hide(int id) {
+  void _hide(int? id) {
     _currentOverlay.removeWhere((overlay) {
       if (overlay.id == id || id == null) {
         try {
@@ -156,8 +155,8 @@ class DialogHelper {
 }
 
 class IndexedData<T> {
-  int id;
+  int? id;
   T data;
 
-  IndexedData({this.id, this.data});
+  IndexedData({this.id, required this.data});
 }
