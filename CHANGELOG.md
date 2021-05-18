@@ -1,3 +1,8 @@
+## [0.1.0] - Add dialog id
+* Added id to dialog to open several dialogs at once
+* Added default dialog style to DialogHelper
+* Increase min flutter version to 1.22.0
+
 ## [0.0.3] - Add comments and docs
 
 ## [0.0.2] - Blur option to dialog showing

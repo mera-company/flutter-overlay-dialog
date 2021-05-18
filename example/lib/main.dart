@@ -43,7 +43,7 @@ class AppState extends State<App> {
           contentTextStyle: TextStyle(color: Colors.purple),
         )*/
       ),
-      home: MaterialPage(togglePlatform)
+      home: MaterialExamplePage(togglePlatform)
     );
   }
 
@@ -52,7 +52,7 @@ class AppState extends State<App> {
       theme: CupertinoThemeData(
         brightness: Brightness.light,
       ),
-      home: CupertinoPage(togglePlatform)
+      home: CupertinoExamplePage(togglePlatform)
     );
   }
 

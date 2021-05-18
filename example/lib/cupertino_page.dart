@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:overlay_dialog/overlay_dialog.dart';
 
 
-class CupertinoPage extends StatelessWidget {
+class CupertinoExamplePage extends StatelessWidget {
   final Function handler;
 
-  CupertinoPage(this.handler);
+  CupertinoExamplePage(this.handler);
 
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:overlay_dialog/overlay_dialog.dart';
 
-class MaterialPage extends StatelessWidget {
+class MaterialExamplePage extends StatelessWidget {
   final Function handler;
 
-  MaterialPage(this.handler);
+  MaterialExamplePage(this.handler);
 
   @override
   Widget build(BuildContext context) {

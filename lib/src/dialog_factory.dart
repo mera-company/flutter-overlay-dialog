@@ -28,6 +28,8 @@ class DialogFactory {
   Widget alert(String title, String content, List<DialogAction> actions) => null;
 
   Widget progress() => null;
+
+  Widget custom(Widget child) => null;
 }
 
 class _MaterialDialogFactory implements DialogFactory {
@@ -49,6 +51,13 @@ class _MaterialDialogFactory implements DialogFactory {
   Widget progress() {
     return Center(
       child: CircularProgressIndicator(),
+    );
+  }
+
+  @override
+  Widget custom(Widget child) {
+    return Center(
+      child: child,
     );
   }
 }
@@ -74,6 +83,13 @@ class _CupertinoDialogFactory implements DialogFactory {
   Widget progress() {
     return Center(
       child: CupertinoActivityIndicator(animating: true),
+    );
+  }
+
+  @override
+  Widget custom(Widget child) {
+    return Center(
+      child: child,
     );
   }
 }
