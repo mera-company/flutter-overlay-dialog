@@ -18,14 +18,15 @@ abstract class DialogFactory {
     if (type == DialogStyle.cupertino) {
       return _CupertinoDialogFactory();
     }
+
     if (kIsWeb) {
       return _MaterialDialogFactory();
+
+    } else if (Platform.isAndroid) {
+      return _MaterialDialogFactory();
+
     } else {
-      if (Platform.isAndroid) {
-        return _MaterialDialogFactory();
-      } else {
-        return _CupertinoDialogFactory();
-      }
+      return _CupertinoDialogFactory();
     }
   }
 
