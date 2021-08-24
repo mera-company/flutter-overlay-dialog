@@ -1,3 +1,4 @@
+## [0.2.1] - Fix: Web
 ## [0.2.0] - Migrate to null-safety
 
 ## [0.1.0] - Add dialog id
