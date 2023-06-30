@@ -48,6 +48,7 @@ class DialogHelper {
       ModalRoute.of(context)?.addScopedWillPopCallback(onWillPop);
     }
 
+    // ignore: close_sinks
     final StreamController<double> controller = StreamController();
 
     final OverlayEntry overlayEntry = OverlayEntry(
