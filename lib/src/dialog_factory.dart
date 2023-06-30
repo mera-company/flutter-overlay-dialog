@@ -3,7 +3,6 @@ import 'package:universal_io/io.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'entity/dialog_action.dart';
 import 'entity/dialog_style.dart';
@@ -21,10 +20,8 @@ abstract class DialogFactory {
 
     if (kIsWeb) {
       return _MaterialDialogFactory();
-
     } else if (Platform.isAndroid) {
       return _MaterialDialogFactory();
-
     } else {
       return _CupertinoDialogFactory();
     }
@@ -45,8 +42,9 @@ class _MaterialDialogFactory implements DialogFactory {
       content: Text(content),
       actions: actions
           .map((action) => TextButton(
-              onPressed: action.handler,
-              child: Text(action.title.toUpperCase())))
+                onPressed: action.handler,
+                child: Text(action.title.toUpperCase()),
+              ))
           .toList(growable: false),
     );
   }

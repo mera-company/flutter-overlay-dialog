@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:overlay_dialog/overlay_dialog.dart';
 import 'package:overlay_dialog/src/animation/appear_widget.dart';
-import 'package:overlay_dialog/src/dialog_widget.dart';
 
 ///Helper class to handle dialog appearance
 ///Keeps the latest dialog and closes the previous dialog automatically
@@ -30,30 +28,20 @@ class DialogHelper {
   }
 
   // Shows the dialog
-  void show(BuildContext context, DialogWidget dialog, {bool rootOverlay = true, int? id, bool hidePrevious = true}) {
+  void show(BuildContext context, DialogWidget dialog, {bool rootOverlay = true, int? id, bool hidePrevious = true, Color overlayColor = BACKGROUND_COLOR}) {
     if (hidePrevious || id == null) hideImmediate(context);
 
-    OverlayState? overlayState = rootOverlay
-      ? context.findRootAncestorStateOfType<OverlayState>()
-      : context.findAncestorStateOfType<OverlayState>();
+    OverlayState? overlayState = rootOverlay ? context.findRootAncestorStateOfType<OverlayState>() : context.findAncestorStateOfType<OverlayState>();
 
     if (dialog.closable) {
-      _currentCallback.add(
-        IndexedData<Future<bool> Function()>(
+      _currentCallback.add(IndexedData<Future<bool> Function()>(
           id: id,
           data: () {
             hide(context, id: id);
             return Future.value(false);
-          })
-      );
-
+          }));
     } else {
-      _currentCallback.add(
-        IndexedData<Future<bool> Function()>(
-          id: id,
-          data: () => Future.value(true)
-        )
-      );
+      _currentCallback.add(IndexedData<Future<bool> Function()>(id: id, data: () => Future.value(true)));
     }
 
     if (_currentCallback.length == 1) {
@@ -67,9 +55,9 @@ class DialogHelper {
         child: Stack(
           children: <Widget>[
             GestureDetector(
-              onTap: () => dialog.closable ? hide(context) : (){},
+              onTap: () => dialog.closable ? hide(context) : () {},
               child: Container(
-                color: BACKGROUND_COLOR,
+                color: overlayColor,
               ),
             ),
             dialog
@@ -81,19 +69,9 @@ class DialogHelper {
       ),
     );
 
-    _currentController.add(
-      IndexedData<StreamController<double>>(
-        id: id,
-        data: controller
-      )
-    );
+    _currentController.add(IndexedData<StreamController<double>>(id: id, data: controller));
 
-    _currentOverlay.add(
-      IndexedData<OverlayEntry>(
-        id: id,
-        data: overlayEntry
-      )
-    );
+    _currentOverlay.add(IndexedData<OverlayEntry>(id: id, data: overlayEntry));
 
     overlayState?.insert(overlayEntry);
     controller.add(1.0);
@@ -105,14 +83,9 @@ class DialogHelper {
       ModalRoute.of(context)?.removeScopedWillPopCallback(onWillPop);
     }
 
-    _currentController
-      .where((controller) => controller.id == id || id == null)
-      .forEach((controller) => controller.data.add(0.0));
+    _currentController.where((controller) => controller.id == id || id == null).forEach((controller) => controller.data.add(0.0));
 
-    Future
-      .delayed(DEFAULT_DURATION)
-      .then((_) => _hide(id))
-      .catchError((error){});
+    Future.delayed(DEFAULT_DURATION).then((_) => _hide(id)).catchError((error) {});
   }
 
   // Hide opened dialog without animation, clear closable callback if any
@@ -130,7 +103,7 @@ class DialogHelper {
       if (overlay.id == id || id == null) {
         try {
           overlay.data.remove();
-        } catch(error) {}
+        } catch (error) {}
 
         return true;
       }
@@ -142,7 +115,7 @@ class DialogHelper {
       if (controller.id == id || id == null) {
         try {
           controller.data.close();
-        } catch(error) {}
+        } catch (error) {}
 
         return true;
       }

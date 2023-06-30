@@ -3,5 +3,5 @@
 enum DialogStyle {
   material,
   cupertino,
-  adaptive
+  adaptive,
 }

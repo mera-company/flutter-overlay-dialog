@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 // blur makes background blurred
 enum AppearStyle {
   opacity,
-  blur
+  blur,
 }
 
 // Uses to animate dialog appearance
@@ -19,18 +19,21 @@ class AppearWidget extends StatefulWidget {
   final Duration _duration;
   final AppearStyle _style;
 
-  AppearWidget({required Widget child, required progress, required Duration duration, AppearStyle style = AppearStyle.opacity}):
-      _child = child,
-      _progress = progress,
-      _duration = duration,
-      _style = style;
+  AppearWidget({
+    required Widget child,
+    required progress,
+    required Duration duration,
+    AppearStyle style = AppearStyle.opacity,
+  })  : _child = child,
+        _progress = progress,
+        _duration = duration,
+        _style = style;
 
   @override
   _AppearWidgetState createState() => _AppearWidgetState();
 }
 
 class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late StreamSubscription _subscription;
 
@@ -60,7 +63,7 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
     return AnimatedBuilder(
       animation: _controller,
       child: widget._child,
-      builder: (_, child) => _getWidget(child, _controller.value)
+      builder: (_, child) => _getWidget(child, _controller.value),
     );
   }
 
@@ -80,7 +83,7 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
             BackdropFilter(
               filter: ImageFilter.blur(
                 sigmaX: progress * 2,
-                sigmaY: progress * 2
+                sigmaY: progress * 2,
               ),
               child: Container(
                 color: Color(0x00000000),
@@ -89,7 +92,7 @@ class _AppearWidgetState extends State<AppearWidget> with SingleTickerProviderSt
             Opacity(
               opacity: progress,
               child: child,
-            )
+            ),
           ],
         );
     }

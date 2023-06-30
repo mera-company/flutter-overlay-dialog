@@ -16,7 +16,7 @@ class CustomDialogWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.blue, width: 2),
             borderRadius: BorderRadius.circular(8.0),
-            color: Colors.white
+            color: Colors.white,
           ),
           child: Text(
             "This is an example of custom overlay dialog. Do you like it?",
@@ -24,7 +24,7 @@ class CustomDialogWidget extends StatelessWidget {
               fontSize: 16,
               fontStyle: FontStyle.normal,
               color: Colors.blue,
-              decoration: TextDecoration.none
+              decoration: TextDecoration.none,
             ),
           ),
         ),
@@ -40,7 +40,7 @@ class CustomDialogWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.blue, width: 2),
                   borderRadius: BorderRadius.circular(60),
-                  color: Colors.white
+                  color: Colors.white,
                 ),
                 child: Icon(
                   Icons.clear,
@@ -56,16 +56,16 @@ class CustomDialogWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.blue, width: 2),
                   borderRadius: BorderRadius.circular(60),
-                  color: Colors.white
+                  color: Colors.white,
                 ),
                 child: Icon(
                   Icons.check,
                   color: Colors.blue,
                 ),
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

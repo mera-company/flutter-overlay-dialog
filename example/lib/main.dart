@@ -19,15 +19,14 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return isMaterial
-      ? _getMaterialApp()
-      : _getCupertionApp();
+    return isMaterial ? _getMaterialApp() : _getCupertionApp();
   }
 
   Widget _getMaterialApp() {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
+
         /// Material dialog theme customization
         /*accentColor: Colors.red,
         buttonTheme: ButtonThemeData(
@@ -43,7 +42,7 @@ class AppState extends State<App> {
           contentTextStyle: TextStyle(color: Colors.purple),
         )*/
       ),
-      home: MaterialExamplePage(togglePlatform)
+      home: MaterialExamplePage(togglePlatform),
     );
   }
 
@@ -52,7 +51,7 @@ class AppState extends State<App> {
       theme: CupertinoThemeData(
         brightness: Brightness.light,
       ),
-      home: CupertinoExamplePage(togglePlatform)
+      home: CupertinoExamplePage(togglePlatform),
     );
   }
 
